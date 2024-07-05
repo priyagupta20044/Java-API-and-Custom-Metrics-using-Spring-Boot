@@ -8,7 +8,7 @@ rule_files:  # You can specify rule files here if you have any
 scrape_configs:
  - job_name: 'prometheus'
    static_configs:
-     - targets: ['172.17.0.2:9090']  # Prometheus itself
+     - targets: ['localhost:9090']  # Prometheus itself
 
  - job_name: 'todo-api'
    metrics_path: '/actuator/prometheus'

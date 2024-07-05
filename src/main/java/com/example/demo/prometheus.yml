@@ -1,0 +1,20 @@
+global:
+ scrape_interval: 15s
+ evaluation_interval: 15s
+ scrape_timeout: 10s
+
+rule_files:  # You can specify rule files here if you have any
+
+scrape_configs:
+ - job_name: 'prometheus'
+   static_configs:
+     - targets: ['172.17.0.2:9090']  # Prometheus itself
+
+ - job_name: 'todo-api'
+   metrics_path: '/actuator/prometheus'
+   scrape_interval: 3s
+   static_configs:
+     - targets: ['host.docker.internal:8080']  # Your Spring Boot application address
+       labels:
+         application: 'spring-actuator'
+
